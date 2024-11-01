@@ -1,0 +1,7 @@
+### GET without param
+GET {{host}}/api/hello
+Accept: application/json
+
+### GET with a param
+GET {{host}}/api/hello?name=remi
+Accept: application/json
