@@ -5,8 +5,9 @@ name = "pypi"
 
 [packages]
 fastapi = {extras = ["standard"], version = "*"}
-redis = "*"
-prometheus-client = "*"
+setuptools = "*"
+redis = {extras = ["hiredis"], version = "*"}
+aioprometheus = {extras = ["starlette"], version = "*"}
 
 [dev-packages]
 black = "*"
