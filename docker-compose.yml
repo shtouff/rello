@@ -4,6 +4,7 @@ services:
     restart: unless-stopped
     volumes:
       - redis_data:/data
+    command: ["redis-server", "--requirepass", "${REDIS_PASSWORD:-}"]
 
   rello:
     build: .
@@ -11,6 +12,7 @@ services:
       - "8000:8000"
     environment:
       RELLO_REDIS_HOST: redis
+      RELLO_REDIS_PASSWORD: ${REDIS_PASSWORD:-}
     depends_on:
       - redis
     restart: unless-stopped

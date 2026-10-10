@@ -1,0 +1,5 @@
+.env
+__pycache__/
+*.pyc
+.python-version
+http-client.private.env.json

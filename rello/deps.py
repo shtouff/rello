@@ -10,7 +10,9 @@ def create_redis_pool():
     host = os.environ.get("RELLO_REDIS_HOST", "127.0.0.1")
     port = int(os.environ.get("RELLO_REDIS_PORT", "6379"))
     db = int(os.environ.get("RELLO_REDIS_DB", 0))
-    return ConnectionPool.from_url(f"redis://{host}:{port}", db=db)
+    password = os.environ.get("RELLO_REDIS_PASSWORD")
+    authority = f":{password}@{host}:{port}" if password else f"{host}:{port}"
+    return ConnectionPool.from_url(f"redis://{authority}", db=db)
 
 
 redis_pool = create_redis_pool()
