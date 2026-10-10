@@ -4,15 +4,17 @@ WORKDIR /app
 
 ENV PIP_ROOT_USER_ACTION=ignore
 
-COPY requirements.txt rello.py /app/
+COPY requirements.txt /app/
+COPY rello/ /app/rello/
 
-RUN pip install -r requirements.txt
+RUN \
+    pip install -U pip setuptools && \
+    pip install -r requirements.txt && \
+    rm -f requirements.txt
 
 EXPOSE 8000
 
 USER nobody
 
-ENTRYPOINT ["fastapi", "run", "rello.py"]
+ENTRYPOINT ["fastapi", "run", "rello/main.py"]
 
-LABEL name=rello
-LABEL version=0.2
